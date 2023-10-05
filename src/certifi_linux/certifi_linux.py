@@ -1,19 +1,16 @@
 from pathlib import Path
-from typing import List
 
-
-_POSSIBLE_CERT_PATHS: List[Path] = [
-    "/etc/ssl/cert.pem", # Alpine, Fedora
-    "/etc/ssl/certs/ca-certificates.crt", # Debian
-    "/etc/pki/tls/cert.pem", # Fedora
-    "/etc/ssl/ca-bundle.pem", # SUSE
+_POSSIBLE_CERT_PATHS = [
+    "/etc/ssl/cert.pem",  # Alpine, Fedora
+    "/etc/ssl/certs/ca-certificates.crt",  # Debian
+    "/etc/pki/tls/cert.pem",  # Fedora
+    "/etc/ssl/ca-bundle.pem",  # SUSE
 ]
-_FOUND_CERT_PATH: str = None
+_FOUND_CERT_PATH: str = ""
 
 
 def where() -> str:
-
-    global _FOUND_CERT_PATH
+    global _FOUND_CERT_PATH  # noqa: PLW0603
 
     if _FOUND_CERT_PATH:
         return _FOUND_CERT_PATH
@@ -23,11 +20,11 @@ def where() -> str:
             _FOUND_CERT_PATH = possible_cert_path
             return _FOUND_CERT_PATH
 
-    raise FileNotFoundError(f"None of the following cert paths could be found: {', '.join(_POSSIBLE_CERT_PATHS)}")
+    error_msg = f"None of the following cert paths could be found: {', '.join(_POSSIBLE_CERT_PATHS)}"
+    raise FileNotFoundError(error_msg)
 
 
 def contents() -> str:
-
     cert_path = Path(where())
 
     with cert_path.open(encoding="utf-8") as file:
