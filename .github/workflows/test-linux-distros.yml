@@ -1,0 +1,42 @@
+# Thx to https://github.com/tiran for inspiration
+name: Test Linux Distros
+
+on: [push]
+
+jobs:
+  test-distros:
+
+    name: "Distro: ${{ matrix.distro }}"
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [
+          "alpine:3",
+          #"centos:7", "quay.io/centos/centos:stream8", "quay.io/centos/centos:stream9",
+          #"debian:buster", "debian:bullseye",
+          #"fedora:35", "fedora:36",
+          #"opensuse/leap",
+          #"ubuntu:bionic", "ubuntu:focal", "ubuntu:jammy",
+        ]
+
+    container:
+      image: ${{ matrix.distro }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Python
+        run: .github/install-python.sh
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install hatch
+        run: |
+          python -m venv testenv
+          testenv/bin/python -m pip install --upgrade pip setuptools
+          testenv/bin/python -m pip install hatch
+      - name: Test
+        run: testenv/bin/python -m hatch run all:test
+      - name: Display Found Cert Path
+        run: testenv/bin/python -m hatch run python${{ matrix.python-version }} scripts/print_cert_path.py
