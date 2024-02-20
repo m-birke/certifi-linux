@@ -16,7 +16,7 @@ jobs:
           "alpine:3",
           "ubuntu:focal", "ubuntu:jammy", "ubuntu:mantic",
           "debian:buster", "debian:bullseye", "debian:bookworm",
-          "fedora:34", "fedora:35", "fedora:38", "fedora:39",
+          "fedora:33", "fedora:34", "fedora:38", "fedora:39",
           "quay.io/centos/centos:stream9",
           #"opensuse/leap",
           
