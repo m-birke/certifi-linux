@@ -30,10 +30,10 @@ jobs:
       - name: Install Python
         run: .github/install-python.sh
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        run: python3 -c "import sys; print(sys.version)"
       - name: Install hatch
         run: |
-          python -m venv testenv
+          python3 -m venv testenv
           testenv/bin/python -m pip install --upgrade pip setuptools
           testenv/bin/python -m pip install hatch
       - name: Test
