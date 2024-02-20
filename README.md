@@ -36,22 +36,33 @@ pip install certifi-linux
 
 ## Compatibility
 
-TODO
+I am trying to keep tests up to date with [endoflife](https://endoflife.date/).
 
-| Cert Bundle Path                     | Linux Distribution         | Tested |
-| ------------------------------------ | -------------------------- | ------ |
-| `/etc/ssl/cert.pem`                  |                            |        |
-| `/etc/pki/tls/cert.pem`              |                            |        |
-| `/etc/ssl/certs/ca-certificates.crt` | Debian-based (Ubuntu, ...) |        |
-| `/etc/ssl/ca-bundle.pem`             |                            |        |
+Tested distros are:
 
-| Environment Tool                           | Tested |
-| ------------------------------------------ | ------ |
-| TODO venv, virtualenv, pipenv?, sys python |        |
+- alpine:3,
+- ubuntu:focal, ubuntu:jammy, ubuntu:mantic,
+- debian:buster, debian:bullseye, debian:bookworm,
+- fedora:33, fedora:34, fedora:38, fedora:39,
+- centos:stream9,
+- (manually) rhel:37, rhel:38
+
+Yet untested: Arch, Slackware, OpenWRT, FreeBSD, SUSE, gentoo, ...
 
 ## Implementation
 
 `certifi-linux` monkey patches `certif.where` and `certifi.contents` by using [wrapt](https://pypi.org/project/wrapt/). When called, it searches in the defined set of possible certificate bundle paths for a match.
+
+### Cert Path Candidates
+
+Tested: yes✅, no❌
+
+| Cert Bundle Path                     | Linux Distribution                                                               |
+| ------------------------------------ | -------------------------------------------------------------------------------- |
+| `/etc/ssl/cert.pem`                  | fedora >= 3.4✅, RHEL✅, alpine✅, centOS Stream✅, Arch❌, OpenWRT❌, FreeBSD❌ |
+| `/etc/pki/tls/cert.pem`              | fedora <= 3.3✅                                                                  |
+| `/etc/ssl/certs/ca-certificates.crt` | Debian✅, Ubuntu✅                                                               |
+| `/etc/ssl/ca-bundle.pem`             | openSUSE❌                                                                       |
 
 ## Related Projects
 
