@@ -37,6 +37,6 @@ jobs:
           testenv/bin/python -m pip install --upgrade pip setuptools
           testenv/bin/python -m pip install hatch
       - name: Test
-        run: testenv/bin/python -m hatch run all:test
+        run: testenv/bin/python -m hatch run test
       - name: Display Found Cert Path
         run: testenv/bin/python -m hatch run python${{ matrix.python-version }} scripts/print_cert_path.py
