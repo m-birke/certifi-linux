@@ -14,11 +14,12 @@ jobs:
       matrix:
         distro: [
           "alpine:3",
-          "centos:7", "quay.io/centos/centos:stream8", "quay.io/centos/centos:stream9",
-          "debian:buster", "debian:bullseye",
-          "fedora:35", "fedora:36",
-          "opensuse/leap",
-          "ubuntu:bionic", "ubuntu:focal", "ubuntu:jammy",
+          "ubuntu:focal", "ubuntu:jammy", "ubuntu:mantic",
+          "debian:buster", "debian:bullseye", "debian:bookworm",
+          "fedora:34", "fedora:35", "fedora:38", "fedora:39",
+          "quay.io/centos/centos:stream9",
+          #"opensuse/leap",
+          
         ]
 
     container:
