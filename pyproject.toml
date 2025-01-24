@@ -33,6 +33,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
@@ -40,8 +41,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/m-birke/certifi-linux"
+Changelog = "https://github.com/m-birke/certifi-linux/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/m-birke/certifi-linux#readme"
+Homepage = "https://github.com/m-birke/certifi-linux"
 Issue = "https://github.com/m-birke/certifi-linux/issues"
 Source = "https://github.com/m-birke/certifi-linux"
 
