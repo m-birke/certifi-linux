@@ -1,5 +1,9 @@
 # Certifi Linux Changelog
 
+## 1.0.1 (2025-01-24)
+
+- Support Python 3.13 (No code changes necessary)
+
 ## 1.0.0 (2024-02-20)
 
 - Put CI in place
