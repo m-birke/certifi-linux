@@ -41,9 +41,9 @@ I am trying to keep tests up to date with [endoflife](https://endoflife.date/).
 Tested distros are:
 
 - alpine:3,
-- ubuntu:focal, ubuntu:jammy, ubuntu:mantic,
+- ubuntu:focal, ubuntu:jammy, ubuntu:noble,
 - debian:buster, debian:bullseye, debian:bookworm,
-- fedora:33, fedora:34, fedora:38, fedora:39,
+- fedora:33, fedora:>=34
 - centos:stream9,
 - (manually) rhel:37, rhel:38
 
@@ -59,8 +59,8 @@ Tested: yes✅, no❌
 
 | Cert Bundle Path                     | Linux Distribution                                                               |
 | ------------------------------------ | -------------------------------------------------------------------------------- |
-| `/etc/ssl/cert.pem`                  | fedora >= 3.4✅, RHEL✅, alpine✅, centOS Stream✅, Arch❌, OpenWRT❌, FreeBSD❌ |
-| `/etc/pki/tls/cert.pem`              | fedora <= 3.3✅                                                                  |
+| `/etc/ssl/cert.pem`                  | fedora >= 34✅, RHEL✅, alpine✅, centOS Stream✅, Arch❌, OpenWRT❌, FreeBSD❌ |
+| `/etc/pki/tls/cert.pem`              | fedora <= 33✅                                                                  |
 | `/etc/ssl/certs/ca-certificates.crt` | Debian✅, Ubuntu✅                                                               |
 | `/etc/ssl/ca-bundle.pem`             | openSUSE❌                                                                       |
 

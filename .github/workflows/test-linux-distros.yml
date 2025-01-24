@@ -14,9 +14,9 @@ jobs:
       matrix:
         distro: [
           "alpine:3",
-          "ubuntu:focal", "ubuntu:jammy", "ubuntu:mantic",
+          "ubuntu:focal", "ubuntu:jammy", "ubuntu:noble",
           "debian:buster", "debian:bullseye", "debian:bookworm",
-          "fedora:33", "fedora:34", "fedora:38", "fedora:39",
+          "fedora:33", "fedora:34", "fedora:40", "fedora:41",
           "quay.io/centos/centos:stream9",
           #"opensuse/leap",
           
