@@ -57,12 +57,15 @@ Yet untested: Arch, Slackware, OpenWRT, FreeBSD, SUSE, gentoo, ...
 
 Tested: yes✅, no❌
 
-| Cert Bundle Path                     | Linux Distribution                                                               |
-| ------------------------------------ | -------------------------------------------------------------------------------- |
-| `/etc/ssl/cert.pem`                  | fedora >= 34✅, RHEL✅, alpine✅, centOS Stream✅, Arch❌, OpenWRT❌, FreeBSD❌ |
-| `/etc/pki/tls/cert.pem`              | fedora <= 33✅                                                                  |
-| `/etc/ssl/certs/ca-certificates.crt` | Debian✅, Ubuntu✅                                                               |
-| `/etc/ssl/ca-bundle.pem`             | openSUSE❌                                                                       |
+| Cert Bundle Path                                    | Linux Distribution                                                              |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `/etc/ssl/cert.pem`                                 | fedora >= 34✅, RHEL✅, alpine✅, centOS Stream✅, Arch❌, OpenWRT❌, FreeBSD❌ |
+| `/etc/ssl/ca-bundle.pem`                            | openSUSE❌                                                                      |
+| `/etc/ssl/certs/ca-certificates.crt`                | Debian✅, Ubuntu✅                                                              |
+| `/etc/pki/tls/cert.pem`                             | fedora <= 33✅                                                                  |
+| `/etc/pki/tls/cacert.pem`                           | OpenELEC❌                                                                      |
+| `/etc/pki/tls/certs/ca-bundle.crt`                  | Fedora✅, RHEL✅                                                                    |
+| `/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem` | CentOS✅, RHEL✅                                                                  |
 
 ## Related Projects
 
@@ -71,6 +74,8 @@ The idea behind `certifi-linux` is the same as behind [certifi-system-store](htt
 [pip-system-certs](https://gitlab.com/alelec/pip-system-certs) solves the same problem with a different approach. It monkey patches the `requests.adapters.HTTPAdapter` and uses `ssl.create_default_context` to load the OS certs. This works fine on Windows but has shown limitations on Linux as it does not work in some cases.
 
 Viewed from the outside, [certifi-debian](https://pypi.org/project/certifi-debian/) is doing the exact same thing like `certifi-linux` but just for debian. [certifi-system-store-wrapper](https://pypi.org/project/certifi-system-store-wrapper/) also does the same but with the necessity to set an environment variable.
+
+There are variants for other programming languages: [Go](https://go.dev/src/crypto/x509/root_linux.go), [R](https://cran.r-project.org/web/packages/curl/vignettes/windows.html)
 
 ## Credits
 
