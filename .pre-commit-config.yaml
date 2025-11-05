@@ -11,6 +11,9 @@ repos:
     hooks:
       - id: mypy
         args: [--install-types, --non-interactive]
+        additional_dependencies: [
+          wrapt
+        ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
