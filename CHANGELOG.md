@@ -1,5 +1,9 @@
 # Certifi Linux Changelog
 
+## TBD (TBD)
+
+- Dropped Python 3.7 Support
+
 ## 1.1.0 (2025-05-27)
 
 - Add more certificate path candidates to search for

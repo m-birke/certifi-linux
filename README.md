@@ -14,6 +14,7 @@ Certifi patch for using Linux cert trust stores
 ## Table of Contents
 
 - [About](#about)
+- [Alternatives](#alternatives)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Compatibility](#compatibility)
@@ -27,6 +28,34 @@ Certifi patch for using Linux cert trust stores
 **WHAT:** `certifi-linux` wraps [certifi](https://pypi.org/project/certifi/), but instead of distributing a certificate like `certifi` does, it uses the Linux system trust store.
 
 **WHY?** The [requests](https://pypi.org/project/requests/) module depends on `certifi` and uses it for TLS. `certifi` distributes the collection of root certificates provided by Mozilla for Python deployments. In some cases, especially in an enterprise setup it is necessary to use the certificates which are shipped with the OS.
+
+## Alternatives
+
+Python 3.10 introduced [truststore](https://pypi.org/project/truststore/) which can be used in combination with `requests` or `httpx`.
+
+```python
+import httpx
+import truststore
+
+truststore.inject_into_ssl()
+httpx.get(...)
+```
+
+```python
+import requests
+import ssl
+import truststore
+from requests.adapters import HTTPAdapter
+
+class OsCertsAdapter(HTTPAdapter):
+    def init_poolmanager(self, connections, maxsize, block=False):
+        ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        return super().init_poolmanager(connections, maxsize, block, ssl_context=ctx)
+
+session = requests.Session()
+session.mount("https://", OsCertsAdapter())
+session.get(...)
+```
 
 ## Installation
 
