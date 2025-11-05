@@ -15,8 +15,8 @@ jobs:
         distro: [
           "alpine:3",
           "ubuntu:focal", "ubuntu:jammy", "ubuntu:noble",
-          "debian:buster", "debian:bullseye", "debian:bookworm",
-          "fedora:33", "fedora:34", "fedora:40", "fedora:41",
+          "debian:bullseye", "debian:bookworm", "debian:trixie",
+          "fedora:33", "fedora:34", "fedora:42", "fedora:43",
           "quay.io/centos/centos:stream9",
           #"opensuse/leap",
 
