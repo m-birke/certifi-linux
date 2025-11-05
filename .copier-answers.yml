@@ -1,0 +1,6 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: '1.2'
+_src_path: https://github.com/m-birke/python-project-template.git
+package_name: certifi_linux
+project_description: Certifi patch for using Linux cert trust stores
+project_name: certifi-linux

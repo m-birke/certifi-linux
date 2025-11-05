@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -7,59 +7,49 @@ name = "certifi-linux"
 dynamic = ["version"]
 description = "Certifi patch for using Linux cert trust stores"
 readme = "README.md"
-requires-python = ">=3.7"
-license-expression = "MIT"
-license-file = "LICENSE.txt"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 keywords = [
-  "certifi",
-  "certs",
-  "certificates",
-  "requests",
-  "linux",
-  "tls",
-  "ssl",
+  # TODO
 ]
 authors = [
-  { name = "Birkenbach Marius", email = "wesci@web.de" },
+  { name = "m-birke", email = "wesci@web.de" },
 ]
 classifiers = [
   "License :: OSI Approved :: MIT License",
-  "Development Status :: 5 - Production/Stable",
-  "Operating System :: POSIX :: Linux",
+  "Development Status :: 4 - Beta",
+  "Typing :: Typed",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
 ]
 dependencies = [
-  "wrapt",
+  # TODO
 ]
 
 [project.urls]
 Changelog = "https://github.com/m-birke/certifi-linux/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/m-birke/certifi-linux#readme"
 Homepage = "https://github.com/m-birke/certifi-linux"
-Issue = "https://github.com/m-birke/certifi-linux/issues"
+Issues = "https://github.com/m-birke/certifi-linux/issues"
 Source = "https://github.com/m-birke/certifi-linux"
 
-[tool.hatch.version]
-path = "src/certifi_linux/__about__.py"
+[tool.hatch]
+build.hooks.vcs.version-file = "src/certifi_linux/_version.py"
+build.targets.wheel.packages = ["src/certifi_linux/"]
 
-[tool.hatch.build]
-include = [
-  "src/certifi_linux/",
-  "/certifi_linux.pth",
-]
-sources = [
-  "src",
-]
+[tool.hatch.version]
+source = "vcs"
+raw-options = {version_scheme = "guess-next-dev"}
 
 [tool.hatch.envs.default]
+path = "./.hatch/default"
 dependencies = [
   "coverage[toml]>=6.5",
   "pytest",
@@ -77,39 +67,21 @@ cov = [
 ]
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+python = ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
-[tool.hatch.envs.lint]
-detached = true
-dependencies = [
-  "black>=23.1.0",
+[tool.hatch.envs.types]
+path = "./.hatch/types"
+extra-dependencies = [
   "mypy>=1.0.0",
-  "ruff>=0.0.243",
 ]
-[tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:src/certifi_linux tests}"
-style = [
-  "ruff {args:.}",
-  "black --check --diff {args:.}",
-]
-fmt = [
-  "black {args:.}",
-  "ruff --fix {args:.}",
-  "style",
-]
-all = [
-  "style",
-  "typing",
-]
-
-[tool.black]
-target-version = ["py37"]
-line-length = 120
-skip-string-normalization = true
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/certifi_linux tests}"
 
 [tool.ruff]
-target-version = "py37"
+target-version = "py310"
 line-length = 120
+
+[tool.ruff.lint]
 select = [
   "A",
   "ARG",
@@ -152,15 +124,21 @@ unfixable = [
   "F401",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["certifi_linux"]
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+#[[tool.mypy.overrides]]
+#module = [
+#]
+#follow_untyped_imports = true
+#ignore_missing_imports = true
 
 [tool.coverage.run]
 source_pkgs = ["certifi_linux", "tests"]
