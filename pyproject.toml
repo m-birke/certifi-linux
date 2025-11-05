@@ -7,7 +7,7 @@ name = "certifi-linux"
 dynamic = ["version"]
 description = "Certifi patch for using Linux cert trust stores"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = "MIT"
 license-files = ["LICENSE"]
 keywords = [
@@ -27,7 +27,6 @@ classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Typing :: Typed",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -76,7 +75,7 @@ cov = [
 ]
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
 [tool.hatch.envs.types]
 path = "./.hatch/types"
@@ -87,7 +86,7 @@ extra-dependencies = [
 check = "mypy --install-types --non-interactive {args:src/certifi_linux tests}"
 
 [tool.ruff]
-target-version = "py37"
+target-version = "py38"
 line-length = 120
 
 [tool.ruff.lint]

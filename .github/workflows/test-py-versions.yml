@@ -10,11 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.11", "3.12", "3.13"]
-        os: [ubuntu-22.04, ubuntu-24.04]
-        exclude:
-          - python-version: "3.7"
-            os: ubuntu-24.04
+        python-version: ["3.8", "3.9", "3.11", "3.12", "3.13"]
+        os: [ubuntu-24.04]
+        #exclude:
+        #  - python-version: "3.7"
+        #    os: ubuntu-24.04
 
     steps:
       - name: Checkout
