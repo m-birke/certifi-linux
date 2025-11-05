@@ -19,12 +19,12 @@ jobs:
           "fedora:33", "fedora:34", "fedora:40", "fedora:41",
           "quay.io/centos/centos:stream9",
           #"opensuse/leap",
-          
+
         ]
 
     container:
       image: ${{ matrix.distro }}
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
