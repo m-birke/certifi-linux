@@ -55,7 +55,7 @@ build.targets.wheel.packages = ["src/certifi_linux/"]
 
 [tool.hatch.version]
 source = "vcs"
-raw-options = {version_scheme = "guess-next-dev"}
+raw-options = {version_scheme = "guess-next-dev", fallback_version = "0.0+fallbackVersion"}
 
 [tool.hatch.envs.default]
 path = "./.hatch/default"
