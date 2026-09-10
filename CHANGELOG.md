@@ -1,3 +1,4 @@
+<<<<<<< before updating
 # Certifi Linux Changelog
 
 ## TBD (TBD)
@@ -21,3 +22,10 @@
 
 - First test release
 - No CI/CD in place
+=======
+# `certifi-linux` Changelog
+
+## 0.1.0 (YYYY-MM-DD)
+
+- ...
+>>>>>>> after updating
